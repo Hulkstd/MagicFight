@@ -12,6 +12,7 @@ public class SkillObject
     public float BaseCooltime;
     public float Cooltime;
     public float Damage;
+    public float Delay;
     public Player PlayerID;
     public delegate bool Skill_f(SkillObject s);
     public Skill_f UseSkill;
@@ -88,5 +89,54 @@ public class BaseSkillScripts : MonoBehaviour
         PlayerID.IsUseSkill = false;
 
         yield return null;
+    }
+
+    public bool Skill1(SkillObject s)
+    {
+        if (s.Cooltime > 0 || PlayerID.IsUseSkill)
+            return false;
+
+        s.Skill.SetActive(true);
+
+        s.PlayerID.UseSkill = 1;
+        s.PlayerID.IsUseSkill = true;
+        s.Cooltime = s.BaseCooltime;
+
+        StartCoroutine("ChangeAvatar", s.Delay);
+
+        return true;
+    }
+
+    public bool Skill2(SkillObject s)
+    {
+        if (s.Cooltime > 0 || PlayerID.IsUseSkill)
+            return false;
+
+        s.Skill.SetActive(true);
+
+        s.PlayerID.UseSkill = 2;
+        s.PlayerID.IsUseSkill = true;
+        s.Cooltime = s.BaseCooltime;
+
+        StartCoroutine("ChangeAvatar", s.Delay);
+
+        return true;
+
+    }
+
+    public bool Skill3(SkillObject s)
+    {
+        if (s.Cooltime > 0 || PlayerID.IsUseSkill)
+            return false;
+
+        s.Skill.SetActive(true);
+
+        s.PlayerID.UseSkill = 3;
+        s.PlayerID.IsUseSkill = true;
+        s.Cooltime = s.BaseCooltime;
+
+        StartCoroutine("ChangeAvatar", s.Delay);
+
+        return true;
     }
 }
